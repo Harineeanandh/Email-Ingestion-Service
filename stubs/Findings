@@ -1,0 +1,654 @@
+Emails with attachment headers in CMU enron emails dataset - (venv) harinee@harinee-Lenovo-IdeaPad-S340-14IIL:~/Email_ingestion_service$ python scan_emails.py
+Attachment header found in: maildir/lokay-m/tw_commercial_group/1075.
+Attachment header found in: maildir/jones-t/notes_inbox/1424.
+Attachment header found in: maildir/jones-t/notes_inbox/321.
+Attachment header found in: maildir/jones-t/notes_inbox/1448.
+Attachment header found in: maildir/jones-t/notes_inbox/388.
+Attachment header found in: maildir/jones-t/notes_inbox/5235.
+Attachment header found in: maildir/jones-t/notes_inbox/336.
+Attachment header found in: maildir/jones-t/notes_inbox/5234.
+Attachment header found in: maildir/jones-t/all_documents/3488.
+Attachment header found in: maildir/jones-t/all_documents/1601.
+Attachment header found in: maildir/jones-t/all_documents/1629.
+Attachment header found in: maildir/jones-t/all_documents/12615.
+Attachment header found in: maildir/jones-t/all_documents/1713.
+Attachment header found in: maildir/jones-t/all_documents/12616.
+Attachment header found in: maildir/jones-t/all_documents/3444.
+Attachment header found in: maildir/mckay-j/sent_items/147.
+Attachment header found in: maildir/mckay-j/personal/95.
+Attachment header found in: maildir/mckay-j/personal/100.
+Attachment header found in: maildir/linder-e/discussion_threads/212.
+Attachment header found in: maildir/linder-e/notes_inbox/727.
+Attachment header found in: maildir/linder-e/all_documents/213.
+Attachment header found in: maildir/farmer-d/discussion_threads/4965.
+Attachment header found in: maildir/farmer-d/entex/1.
+Attachment header found in: maildir/farmer-d/entex/106.
+Attachment header found in: maildir/farmer-d/all_documents/3128.
+Attachment header found in: maildir/zufferli-j/inbox/quotes/32.
+Attachment header found in: maildir/hain-m/discussion_threads/821.
+Attachment header found in: maildir/hain-m/discussion_threads/81.
+Attachment header found in: maildir/hain-m/discussion_threads/236.
+Attachment header found in: maildir/hain-m/notes_inbox/874.
+Attachment header found in: maildir/hain-m/_sent_mail/187.
+Attachment header found in: maildir/hain-m/all_documents/466.
+Attachment header found in: maildir/hain-m/all_documents/1274.
+Attachment header found in: maildir/hain-m/all_documents/1070.
+Attachment header found in: maildir/stokley-c/chris_stokley/murray/63.
+Attachment header found in: maildir/ward-k/_sent_mail/170.
+Attachment header found in: maildir/giron-d/discussion_threads/559.
+Attachment header found in: maildir/giron-d/discussion_threads/560.
+Attachment header found in: maildir/giron-d/discussion_threads/544.
+Attachment header found in: maildir/giron-d/discussion_threads/561.
+Attachment header found in: maildir/giron-d/discussion_threads/543.
+Attachment header found in: maildir/giron-d/discussion_threads/558.
+Attachment header found in: maildir/giron-d/notes_inbox/39.
+Attachment header found in: maildir/giron-d/_sent_mail/37.
+Attachment header found in: maildir/giron-d/_sent_mail/45.
+Attachment header found in: maildir/giron-d/_sent_mail/36.
+Attachment header found in: maildir/giron-d/_sent_mail/38.
+Attachment header found in: maildir/giron-d/_sent_mail/35.
+Attachment header found in: maildir/giron-d/sent_items/185.
+Attachment header found in: maildir/giron-d/sent/37.
+Attachment header found in: maildir/giron-d/sent/45.
+Attachment header found in: maildir/giron-d/sent/36.
+Attachment header found in: maildir/giron-d/sent/38.
+Attachment header found in: maildir/giron-d/sent/35.
+Attachment header found in: maildir/giron-d/deleted_items/290.
+Attachment header found in: maildir/giron-d/all_documents/102.
+Attachment header found in: maildir/giron-d/all_documents/83.
+Attachment header found in: maildir/giron-d/all_documents/104.
+Attachment header found in: maildir/giron-d/all_documents/85.
+Attachment header found in: maildir/giron-d/all_documents/86.
+Attachment header found in: maildir/giron-d/all_documents/84.
+Attachment header found in: maildir/giron-d/inbox/260.
+Attachment header found in: maildir/giron-d/inbox/194.
+Attachment header found in: maildir/giron-d/inbox/174.
+Attachment header found in: maildir/guzman-m/discussion_threads/1045.
+Attachment header found in: maildir/guzman-m/notes_inbox/841.
+Attachment header found in: maildir/guzman-m/all_documents/893.
+Attachment header found in: maildir/parks-j/deleted_items/476.
+Attachment header found in: maildir/dasovich-j/notes_inbox/5303.
+Attachment header found in: maildir/dasovich-j/notes_inbox/1986.
+Attachment header found in: maildir/dasovich-j/notes_inbox/5339.
+Attachment header found in: maildir/dasovich-j/notes_inbox/1984.
+Attachment header found in: maildir/dasovich-j/sent/3332.
+Attachment header found in: maildir/dasovich-j/sent/3330.
+Attachment header found in: maildir/dasovich-j/sent/1147.
+Attachment header found in: maildir/dasovich-j/all_documents/3918.
+Attachment header found in: maildir/dasovich-j/all_documents/9200.
+Attachment header found in: maildir/dasovich-j/all_documents/9327.
+Attachment header found in: maildir/dasovich-j/all_documents/9325.
+Attachment header found in: maildir/dasovich-j/all_documents/3925.
+Attachment header found in: maildir/dasovich-j/all_documents/3920.
+Attachment header found in: maildir/dasovich-j/all_documents/9099.
+Attachment header found in: maildir/haedicke-m/notes_inbox/13.
+Attachment header found in: maildir/haedicke-m/notes_inbox/74.
+Attachment header found in: maildir/haedicke-m/all_documents/1272.
+Attachment header found in: maildir/haedicke-m/all_documents/1364.
+Attachment header found in: maildir/hodge-j/inbox/477.
+Attachment header found in: maildir/baughman-d/personal/imagesmoviessound/4.
+Attachment header found in: maildir/baughman-d/deleted_items/132.
+Attachment header found in: maildir/tholt-j/sent_items/132.
+Attachment header found in: maildir/rogers-b/deleted_items/314.
+Attachment header found in: maildir/taylor-m/sent/207.
+Attachment header found in: maildir/taylor-m/sent/523.
+Attachment header found in: maildir/taylor-m/all_documents/691.
+Attachment header found in: maildir/taylor-m/all_documents/230.
+Attachment header found in: maildir/motley-m/inbox/4.
+Attachment header found in: maildir/hernandez-j/discussion_threads/361.
+Attachment header found in: maildir/hernandez-j/discussion_threads/330.
+Attachment header found in: maildir/hernandez-j/discussion_threads/430.
+Attachment header found in: maildir/hernandez-j/notes_inbox/261.
+Attachment header found in: maildir/hernandez-j/notes_inbox/360.
+Attachment header found in: maildir/hernandez-j/_sent_mail/15.
+Attachment header found in: maildir/hernandez-j/sent/15.
+Attachment header found in: maildir/hernandez-j/all_documents/360.
+Attachment header found in: maildir/hernandez-j/all_documents/461.
+Attachment header found in: maildir/hernandez-j/all_documents/430.
+Attachment header found in: maildir/scholtes-d/transmission/29.
+Attachment header found in: maildir/scholtes-d/transmission/35.
+Attachment header found in: maildir/platter-p/sent_items/14.
+Attachment header found in: maildir/dean-c/discussion_threads/102.
+Attachment header found in: maildir/dean-c/all_documents/102.
+Attachment header found in: maildir/dean-c/info/180.
+Attachment header found in: maildir/scott-s/discussion_threads/871.
+Attachment header found in: maildir/scott-s/_sent_mail/765.
+Attachment header found in: maildir/scott-s/sent/844.
+Attachment header found in: maildir/scott-s/all_documents/1768.
+Attachment header found in: maildir/scott-s/inbox/146.
+Attachment header found in: maildir/richey-c/trading_quotes/1.
+Attachment header found in: maildir/richey-c/marks/12.
+Attachment header found in: maildir/lay-k/discussion_threads/505.
+Attachment header found in: maildir/lay-k/notes_inbox/431.
+Attachment header found in: maildir/lay-k/all_documents/642.
+Attachment header found in: maildir/mann-k/discussion_threads/4896.
+Attachment header found in: maildir/mann-k/discussion_threads/4891.
+Attachment header found in: maildir/mann-k/_sent_mail/22.
+Attachment header found in: maildir/mann-k/sent/4429.
+Attachment header found in: maildir/mann-k/yazoo_city/292.
+Attachment header found in: maildir/mann-k/yazoo_city/122.
+Attachment header found in: maildir/mann-k/all_documents/6587.
+Attachment header found in: maildir/mann-k/all_documents/6594.
+Attachment header found in: maildir/whalley-l/discussion_threads/1250.
+Attachment header found in: maildir/whalley-l/notes_inbox/527.
+Attachment header found in: maildir/whalley-l/all_documents/1068.
+Attachment header found in: maildir/kuykendall-t/discussion_threads/116.
+Attachment header found in: maildir/kuykendall-t/_sent_mail/124.
+Attachment header found in: maildir/kuykendall-t/sent/124.
+Attachment header found in: maildir/kuykendall-t/all_documents/161.
+Attachment header found in: maildir/dorland-c/deleted_items/20.
+Attachment header found in: maildir/kean-s/deleted_items/292.
+Attachment header found in: maildir/kean-s/deleted_items/434.
+
+Total emails with real attachment headers: 140
+
+
+Using MongoDB for the entire pipeline
+     vs
+Using DeltaLake for the entire pipeline
+     vs
+Using MongoDB for ingestion (stage1) and DeltaLake for the rest of the stages
+
+
+&site=NASDAQ&sitesubtype=
+------------------------------------------------------------
+User: dasovich-j | Folder: all_documents | Email: 3918.
+  Attachments found: Pergher, Gunther.vcf
+------------------------------------------------------------
+User: dasovich-j | Folder: all_documents | Email: 29022.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: dasovich-j | Folder: all_documents | Email: 8865.
+  Attachments found: /mpsc/orders/comm/2
+------------------------------------------------------------
+User: dasovich-j | Folder: notes_inbox | Email: 5303.
+  Attachments found: =?iso-8859-1?Q?AmendABX1.doc?=, =?iso-8859-1?Q?cpuctalkingpoints.doc?=
+------------------------------------------------------------
+User: dasovich-j | Folder: notes_inbox | Email: 1986.
+  Attachments found: Pergher, Gunther.vcf
+------------------------------------------------------------
+User: dasovich-j | Folder: notes_inbox | Email: 5339.
+  Attachments found: 3D, 3D"Harris County EBA Speech (1-12
+------------------------------------------------------------
+User: dasovich-j | Folder: sent | Email: 3332.
+  Attachments found: CPUC01-#90723-v1-comments_of_ORA_on_Draft_Decision_of_ALJ_DEULLOA_.do
+------------------------------------------------------------
+User: dasovich-j | Folder: sent | Email: 3330.
+  Attachments found: X22061.DOC
+------------------------------------------------------------
+User: dasovich-j | Folder: sent | Email: 1147.
+  Attachments found: Pergher, Gunther.vcf
+------------------------------------------------------------
+User: dean-c | Folder: all_documents | Email: 102.
+  Attachments found: Fax_08.28.00-12pr.doc
+------------------------------------------------------------
+User: dean-c | Folder: discussion_threads | Email: 102.
+  Attachments found: Fax_08.28.00-12pr.doc
+------------------------------------------------------------
+User: dean-c | Folder: info | Email: 180.
+  Attachments found: Fax_08.28.00-12pr.doc
+------------------------------------------------------------
+User: derrick-j | Folder: sent_items | Email: 275.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: dorland-c | Folder: deleted_items | Email: 20.
+  Attachments found: MIRANT - Dec 22 2001 Termination.xls, MIRANT - Nov 30 2001 Termination.xls, yes
+------------------------------------------------------------
+User: farmer-d | Folder: all_documents | Email: 3128.
+  Attachments found: HPL-Apr.xls
+------------------------------------------------------------
+User: farmer-d | Folder: discussion_threads | Email: 4965.
+  Attachments found: HPL-Apr.xls
+------------------------------------------------------------
+User: farmer-d | Folder: entex | Email: 1.
+  Attachments found: HPL-Apr.xls
+------------------------------------------------------------
+User: farmer-d | Folder: entex | Email: 106.
+  Attachments found: HPL-Apr.xls
+------------------------------------------------------------
+User: fischer-m | Folder: all_documents | Email: 239.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: all_documents | Email: 251.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: all_documents | Email: 238.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: discussion_threads | Email: 176.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: discussion_threads | Email: 177.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: notes_inbox | Email: 157.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: notes_inbox | Email: 169.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: fischer-m | Folder: notes_inbox | Email: 170.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: forney-j | Folder: sent_items | Email: 46.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: giron-d | Folder: _sent_mail | Email: 37.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: _sent_mail | Email: 45.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: _sent_mail | Email: 36.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: all_documents | Email: 102.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: all_documents | Email: 83.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: all_documents | Email: 104.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: deleted_items | Email: 290.
+  Attachments found: AFGHANIHUNT.MP3
+------------------------------------------------------------
+User: giron-d | Folder: discussion_threads | Email: 559.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: discussion_threads | Email: 560.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: discussion_threads | Email: 544.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: inbox | Email: 260.
+  Attachments found: AFGHANIHUNT.MP3
+------------------------------------------------------------
+User: giron-d | Folder: inbox | Email: 194.
+  Attachments found: wedding.jpg
+------------------------------------------------------------
+User: giron-d | Folder: inbox | Email: 174.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: notes_inbox | Email: 39.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: sent | Email: 37.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: sent | Email: 45.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: sent | Email: 36.
+  Attachments found: SNAKE.doc
+------------------------------------------------------------
+User: giron-d | Folder: sent_items | Email: 185.
+  Attachments found: AFGHANIHUNT.MP3
+------------------------------------------------------------
+User: guzman-m | Folder: all_documents | Email: 893.
+  Attachments found: 3_05act.xls
+------------------------------------------------------------
+User: guzman-m | Folder: discussion_threads | Email: 1045.
+  Attachments found: 3_05act.xls
+------------------------------------------------------------
+User: guzman-m | Folder: notes_inbox | Email: 841.
+  Attachments found: 3_05act.xls
+------------------------------------------------------------
+User: haedicke-m | Folder: all_documents | Email: 1272.
+  Attachments found: PA06584720010524D01.pdf
+------------------------------------------------------------
+User: haedicke-m | Folder: all_documents | Email: 1364.
+  Attachments found: P006730320010608D01.pdf
+------------------------------------------------------------
+User: haedicke-m | Folder: notes_inbox | Email: 13.
+  Attachments found: P006730320010608D01.pdf
+------------------------------------------------------------
+User: haedicke-m | Folder: notes_inbox | Email: 74.
+  Attachments found: PA06584720010524D01.pdf
+------------------------------------------------------------
+User: hain-m | Folder: _sent_mail | Email: 187.
+  Attachments found: 021210910001[1].gif
+------------------------------------------------------------
+User: hain-m | Folder: all_documents | Email: 466.
+  Attachments found: pic12268.pcx
+------------------------------------------------------------
+User: hain-m | Folder: all_documents | Email: 1274.
+  Attachments found: Generators#2.wpd
+------------------------------------------------------------
+User: hain-m | Folder: all_documents | Email: 1070.
+  Attachments found: 021210910001[1].gif
+------------------------------------------------------------
+User: hain-m | Folder: discussion_threads | Email: 821.
+  Attachments found: pic12268.pcx
+------------------------------------------------------------
+User: hain-m | Folder: discussion_threads | Email: 81.
+  Attachments found: Generators#2.wpd
+------------------------------------------------------------
+User: hain-m | Folder: discussion_threads | Email: 236.
+  Attachments found: 021210910001[1].gif
+------------------------------------------------------------
+User: hain-m | Folder: notes_inbox | Email: 874.
+  Attachments found: Generators#2.wpd
+------------------------------------------------------------
+User: harris-s | Folder: deleted_items | Email: 447.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: heard-m | Folder: deleted_items | Email: 148.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: heard-m | Folder: deleted_items | Email: 144.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: hernandez-j | Folder: _sent_mail | Email: 15.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: all_documents | Email: 360.
+  Attachments found: MOSES.JPG
+------------------------------------------------------------
+User: hernandez-j | Folder: all_documents | Email: 461.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: all_documents | Email: 430.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: discussion_threads | Email: 361.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: discussion_threads | Email: 330.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: discussion_threads | Email: 430.
+  Attachments found: MOSES.JPG
+------------------------------------------------------------
+User: hernandez-j | Folder: notes_inbox | Email: 261.
+  Attachments found: MOSES.JPG
+------------------------------------------------------------
+User: hernandez-j | Folder: notes_inbox | Email: 360.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hernandez-j | Folder: sent | Email: 15.
+  Attachments found: Floridaballot_1.jpg
+------------------------------------------------------------
+User: hodge-j | Folder: inbox | Email: 477.
+  Attachments found: Grant Request 10-16-01.doc, Grant Request Attchmt- Fishery Module.doc
+------------------------------------------------------------
+User: jones-t | Folder: all_documents | Email: 3488.
+  Attachments found: Cap Option (CDD)(9.20.99).doc, Cap Option (HDD)(9.20.99).doc
+------------------------------------------------------------
+User: jones-t | Folder: all_documents | Email: 1601.
+  Attachments found: JAronStatoilReconciliation.xls
+------------------------------------------------------------
+User: jones-t | Folder: all_documents | Email: 1629.
+  Attachments found: church gourmet.doc
+------------------------------------------------------------
+User: jones-t | Folder: notes_inbox | Email: 1424.
+  Attachments found: Cap Option (CDD)(9.20.99).doc, Cap Option (HDD)(9.20.99).doc
+------------------------------------------------------------
+User: jones-t | Folder: notes_inbox | Email: 321.
+  Attachments found: JAronStatoilReconciliation.xls
+------------------------------------------------------------
+User: jones-t | Folder: notes_inbox | Email: 1448.
+  Attachments found: Cap Option (CDD)(9.20.99).doc, Cap Option (HDD)(9.20.99).doc
+------------------------------------------------------------
+User: kaminski-v | Folder: all_documents | Email: 5409.
+  Attachments found: MSWORD
+------------------------------------------------------------
+User: kaminski-v | Folder: conferences | Email: 127.
+  Attachments found: MSWORD
+------------------------------------------------------------
+User: kaminski-v | Folder: deleted_items | Email: 786.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: deleted_items | Email: 796.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: deleted_items | Email: 317.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: discussion_threads | Email: 215.
+  Attachments found: MSWORD
+------------------------------------------------------------
+User: kaminski-v | Folder: inbox | Email: 26.
+  Attachments found: yes
+------------------------------------------------------------
+User: kaminski-v | Folder: inbox | Email: 393.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: inbox | Email: 66.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: sent_items | Email: 304.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: sent_items | Email: 2121.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: kaminski-v | Folder: sent_items | Email: 2661.
+  Attachments found: >
+------------------------------------------------------------
+User: kean-s | Folder: deleted_items | Email: 292.
+  Attachments found: 102801807bankrelease[1].doc
+------------------------------------------------------------
+User: kean-s | Folder: deleted_items | Email: 434.
+  Attachments found: External QA.doc, Final Release.doc, Internal QA.doc, Intranet QA.doc, Talking Points.doc, X-MS-TNEF-Correlator:, announce email.doc, kekstcontactlist.doc, mergervideokllscript3.doc, messages.doc, timeline.doc
+------------------------------------------------------------
+User: keavey-p | Folder: inbox | Email: 411.
+  Attachments found: Daily Price Sheet.xls
+------------------------------------------------------------
+User: kuykendall-t | Folder: _sent_mail | Email: 124.
+  Attachments found: Part.001
+------------------------------------------------------------
+User: kuykendall-t | Folder: all_documents | Email: 161.
+  Attachments found: Part.001
+------------------------------------------------------------
+User: kuykendall-t | Folder: discussion_threads | Email: 116.
+  Attachments found: Part.001
+------------------------------------------------------------
+User: kuykendall-t | Folder: sent | Email: 124.
+  Attachments found: Part.001
+------------------------------------------------------------
+User: lay-k | Folder: all_documents | Email: 642.
+  Attachments found: Sanofi-Synthelabo Release.doc
+------------------------------------------------------------
+User: lay-k | Folder: discussion_threads | Email: 505.
+  Attachments found: Sanofi-Synthelabo Release.doc
+------------------------------------------------------------
+User: lay-k | Folder: notes_inbox | Email: 431.
+  Attachments found: Sanofi-Synthelabo Release.doc
+------------------------------------------------------------
+User: lenhart-m | Folder: deleted_items | Email: 201.
+  Attachments found: X-MS-TNEF-Correlator
+------------------------------------------------------------
+User: linder-e | Folder: all_documents | Email: 213.
+  Attachments found: EPE_APRIL_2001.xls
+------------------------------------------------------------
+User: linder-e | Folder: discussion_threads | Email: 212.
+  Attachments found: EPE_APRIL_2001.xls
+------------------------------------------------------------
+User: linder-e | Folder: notes_inbox | Email: 727.
+  Attachments found: EPE_APRIL_2001.xls
+------------------------------------------------------------
+User: lokay-m | Folder: tw_commercial_group | Email: 1075.
+  Attachments found: X-MS-TNEF-Correlator:, agmt.fm.neg.rate3WesternGas(rev.5-10)1
+------------------------------------------------------------
+User: love-p | Folder: deleted_items | Email: 26.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: love-p | Folder: deleted_items | Email: 285.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: mann-k | Folder: _sent_mail | Email: 22.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: all_documents | Email: 6587.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: all_documents | Email: 6594.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: discussion_threads | Email: 4896.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: discussion_threads | Email: 4891.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: sent | Email: 4429.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: yazoo_city | Email: 292.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mann-k | Folder: yazoo_city | Email: 122.
+  Attachments found: enron power.wpd
+------------------------------------------------------------
+User: mckay-j | Folder: personal | Email: 95.
+  Attachments found: bike jump_1.mpg
+------------------------------------------------------------
+User: mckay-j | Folder: personal | Email: 100.
+  Attachments found: Stampede Drinking.doc
+------------------------------------------------------------
+User: mckay-j | Folder: sent_items | Email: 147.
+  Attachments found: Stampede Drinking.doc
+------------------------------------------------------------
+User: mims-thurston-p | Folder: inbox | Email: 135.
+  Attachments found: test.xls
+------------------------------------------------------------
+User: motley-m | Folder: inbox | Email: 4.
+  Attachments found: BuddyList.blt, yes
+------------------------------------------------------------
+User: panus-s | Folder: deleted_items | Email: 5.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: parks-j | Folder: deleted_items | Email: 476.
+  Attachments found: margas1.xls, yes
+------------------------------------------------------------
+User: platter-p | Folder: sent_items | Email: 14.
+  Attachments found: Jim Vojtech.vcf, X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: presto-k | Folder: deleted_items | Email: 182.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: presto-k | Folder: deleted_items | Email: 648.
+  Attachments found: >X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: richey-c | Folder: marks | Email: 12.
+  Attachments found: AB Power Fax.xls
+------------------------------------------------------------
+User: richey-c | Folder: trading_quotes | Email: 1.
+  Attachments found: AB Power Fax.xls
+------------------------------------------------------------
+User: rogers-b | Folder: deleted_items | Email: 314.
+  Attachments found: nobreaks.jpg
+------------------------------------------------------------
+User: sanders-r | Folder: sent_items | Email: 13.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: scholtes-d | Folder: transmission | Email: 29.
+  Attachments found: posting.htm
+------------------------------------------------------------
+User: scholtes-d | Folder: transmission | Email: 35.
+  Attachments found: posting.htm
+------------------------------------------------------------
+User: schoolcraft-d | Folder: deleted_items | Email: 234.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: scott-s | Folder: _sent_mail | Email: 765.
+  Attachments found: CENTURYBESTPICS_1.DOC
+------------------------------------------------------------
+User: scott-s | Folder: _sent_mail | Email: 795.
+  Attachments found: Junebug-.exe>>
+------------------------------------------------------------
+User: scott-s | Folder: all_documents | Email: 1768.
+  Attachments found: CENTURYBESTPICS_1.DOC
+------------------------------------------------------------
+User: scott-s | Folder: all_documents | Email: 1800.
+  Attachments found: Junebug-.exe>>
+------------------------------------------------------------
+User: scott-s | Folder: discussion_threads | Email: 871.
+  Attachments found: CENTURYBESTPICS_1.DOC
+------------------------------------------------------------
+User: scott-s | Folder: discussion_threads | Email: 849.
+  Attachments found: Junebug-.exe>>
+------------------------------------------------------------
+User: scott-s | Folder: inbox | Email: 146.
+  Attachments found: C.htm
+------------------------------------------------------------
+User: scott-s | Folder: sent | Email: 844.
+  Attachments found: CENTURYBESTPICS_1.DOC
+------------------------------------------------------------
+User: scott-s | Folder: sent | Email: 874.
+  Attachments found: Junebug-.exe>>
+------------------------------------------------------------
+User: shankman-j | Folder: deleted_items | Email: 825.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: smith-m | Folder: deleted_items | Email: 78.
+  Attachments found: includes/pdi00_terms.txt>
+------------------------------------------------------------
+User: smith-m | Folder: inbox | Email: 394.
+  Attachments found: includes/pdi00_terms.txt
+------------------------------------------------------------
+User: smith-m | Folder: inbox | Email: 441.
+  Attachments found: includes/pdi00_terms.txt
+------------------------------------------------------------
+User: steffes-j | Folder: deleted_items | Email: 393.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: taylor-m | Folder: all_documents | Email: 691.
+  Attachments found: Memo_Credit_Risk1.rtf
+------------------------------------------------------------
+User: taylor-m | Folder: all_documents | Email: 3803.
+  Attachments found: 3Dlogin%2Fsign=
+------------------------------------------------------------
+User: taylor-m | Folder: all_documents | Email: 230.
+  Attachments found: pic01115.pcx
+------------------------------------------------------------
+User: taylor-m | Folder: notes_inbox | Email: 1791.
+  Attachments found: 3Dlogin%2Fsign=
+------------------------------------------------------------
+User: taylor-m | Folder: sent | Email: 207.
+  Attachments found: pic01115.pcx
+------------------------------------------------------------
+User: taylor-m | Folder: sent | Email: 523.
+  Attachments found: Memo_Credit_Risk1.rtf
+------------------------------------------------------------
+User: tholt-j | Folder: sent_items | Email: 121.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: tholt-j | Folder: sent_items | Email: 132.
+  Attachments found: Part.001
+------------------------------------------------------------
+User: thomas-p | Folder: deleted_items | Email: 300.
+  Attachments found: 3Din=
+------------------------------------------------------------
+User: ward-k | Folder: _sent_mail | Email: 170.
+  Attachments found: Physical_Master_Contract_draft.doc
+------------------------------------------------------------
+User: ward-k | Folder: inbox | Email: 24.
+  Attachments found: X-MS-TNEF-Correlator:
+------------------------------------------------------------
+User: whalley-l | Folder: all_documents | Email: 1068.
+  Attachments found: PA06584720010524D01.pdf
+------------------------------------------------------------
+User: whalley-l | Folder: discussion_threads | Email: 1250.
+  Attachments found: PA06584720010524D01.pdf
+------------------------------------------------------------
+User: whalley-l | Folder: notes_inbox | Email: 527.
+  Attachments found: PA06584720010524D01.pdf
+------------------------------------------------------------
+User: white-s | Folder: sent_items | Email: 159.
+  Attachments found: yes
+------------------------------------------------------------
+User: wolfe-j | Folder: all_documents | Email: 75.
+  Attachments found: shop_engagerings.html
+------------------------------------------------------------
+User: wolfe-j | Folder: discussion_threads | Email: 74.
+  Attachments found: shop_engagerings.html
+------------------------------------------------------------
+User: wolfe-j | Folder: saved_02 | Email: 24.
+  Attachments found: shop_engagerings.html
+------------------------------------------------------------
+Total emails with attachments found: 237
+(venv) harinee@harinee-Lenovo-IdeaPad-S340-14IIL:~/Email_ingestion_service$ 
