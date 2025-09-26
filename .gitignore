@@ -1,5 +1,6 @@
 # Python environment
 venv/
+.env
 
 # Python cache
 __pycache__/
@@ -8,11 +9,12 @@ __pycache__/
 
 # Logs
 *.log
+logs
 
 # OS files
 .DS_Store
 Thumbs.db
 
 # Dataset and Delta Lake outputs
-deltalake/bodies/
+deltalake
 maildir/
