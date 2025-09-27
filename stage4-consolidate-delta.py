@@ -6,6 +6,7 @@ FULLY OPTIMIZED, Memory-Safe Stage 4 for email consolidation.
 - Implements: Resume Logic, Coalesce, Filtered Joins, Per-User Compaction.
 - Threaded driver with efficient chunk processing.
 - Optimized for low-RAM (~4GB) and maximum transactional efficiency.
+- Also implements a dedicated function to automatically remediate quarantined users.
 """
 
 import os
@@ -16,6 +17,7 @@ import time
 import sys
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import shutil 
 
 import psutil
 from dotenv import load_dotenv
@@ -27,7 +29,7 @@ from pyspark.sql.types import StructType, StructField, StringType, TimestampType
 try:
     from delta.tables import DeltaTable
 except ImportError:
-    # Basic fallback if delta is not configured in environment, though Spark submit should handle this
+    # Basic fallback if delta is not configured in environment
     class DeltaTable:
         @staticmethod
         def isDeltaTable(spark, path):
@@ -52,7 +54,7 @@ DELTA_BODIES_PATH = os.getenv("BODIES_OUTPUT_DIR", "deltalake/bodies")
 DELTA_QUARANTINE_PATH = os.getenv("DELTA_QUARANTINE_PATH", "deltalake/quarantine")
 TMP_DELTA_PATH = os.getenv("TMP_DELTA_PATH", "deltalake/tmp")
 
-# OPTIMIZED DEFAULTS - MUST BE SET IN .env FOR PRODUCTION
+# OPTIMIZED DEFAULTS - SET IN .env FOR PRODUCTION
 DRIVER_USER_THREADS = int(os.getenv("DRIVER_USER_THREADS", 1))
 # FIX: Drastically increased chunk size (200 -> 2000) for fewer Spark jobs
 CHUNK_SIZE_BASE = int(os.getenv("CHUNK_SIZE_BASE", 2000))
@@ -105,7 +107,6 @@ def create_spark_session() -> SparkSession:
         SparkSession.builder.appName("Stage4Optimized")
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-        # Ensure we keep the low-RAM configurations set in the spark-submit command
         .config("spark.sql.shuffle.partitions", str(SPARK_SHUFFLE_PARTITIONS))
         .config("spark.sql.adaptive.enabled", "true")
         .config("spark.sql.files.maxRecordsPerFile", str(SPARK_MAX_RECORDS_PER_FILE))
@@ -133,14 +134,13 @@ def read_postgres(spark: SparkSession, query: str) -> DataFrame:
     )
 
 # ----------------------
-# RESUME LOGIC (Fix 1)
+# RESUME LOGIC 
 # ----------------------
 def get_last_processed_dt(spark: SparkSession, user_name: str) -> datetime:
     """
     Checks the consolidated Delta table for the maximum email_date processed for this user
     to enable safe resuming.
     """
-    user_sql = escape_sql(user_name)
     last_dt = datetime.min
     try:
         if DeltaTable.isDeltaTable(spark, DELTA_CONSOLIDATED_PATH):
@@ -159,8 +159,6 @@ def get_last_processed_dt(spark: SparkSession, user_name: str) -> datetime:
         # If the table is empty or unreadable, we start from the beginning (last_dt = datetime.min)
         logger.warning(f"Could not read max date for resume for {user_name}. Starting from beginning. Error: {e}")
     
-    # FIX: OverflowError fix. The minimum datetime Python object cannot be subtracted from.
-    # If starting fresh, return a safe date (1980-01-01) guaranteed to be before all Enron emails.
     if last_dt == datetime.min:
         # Safe early date for fresh start, based on the dataset's earliest known email (1980)
         return datetime(1980, 1, 1) 
@@ -196,7 +194,30 @@ def determine_chunk_size(email_count: int) -> int:
 # ----------------------
 # SCHEMA & PRECREATION
 # ----------------------
-# NOTE: Schema is kept as-is, as it was correctly fixed in previous steps.
+# THIS SCHEMA MUST BE THE TARGET FOR CONSOLIDATION
+CONSOLIDATED_SCHEMA = StructType([
+    StructField("email_id", StringType(), False),
+    StructField("message_id", StringType(), True),
+    StructField("email_date", TimestampType(), True),
+    StructField("user_name", StringType(), True), 
+    StructField("folder", StringType(), True),
+    StructField("dataset", StringType(), True),
+    StructField("sender", StringType(), True),
+    StructField("recipients", ArrayType(StringType(), True), True),
+    StructField("cc", ArrayType(StringType(), True), True),
+    StructField("bcc", ArrayType(StringType(), True), True),
+    StructField("subject", StringType(), True),
+    StructField("headers_json", StringType(), True),
+    StructField("preview", StringType(), True),
+    StructField("filename", StringType(), True),
+    StructField("size_bytes", LongType(), True), 
+    StructField("mime_type", StringType(), True),
+    StructField("uri", StringType(), True),
+    StructField("body", StringType(), True),
+    StructField("original_email_date", TimestampType(), True),
+    StructField("year_partition", StringType(), True),
+    StructField("year_quality", StringType(), True)
+])
 
 def cast_size_bytes(df: DataFrame) -> DataFrame:
     # Safely casts size_bytes to LongType
@@ -218,31 +239,7 @@ def normalize_email_schema(df: DataFrame) -> DataFrame:
     return df
 
 def precreate_delta_tables(spark: SparkSession):
-    # (Precreation logic remains the same)
-    schema = StructType([
-        StructField("email_id", StringType(), False),
-        StructField("message_id", StringType(), True),
-        StructField("email_date", TimestampType(), True),
-        StructField("user_name", StringType(), True),
-        StructField("folder", StringType(), True),
-        StructField("dataset", StringType(), True),
-        StructField("sender", StringType(), True),
-        StructField("recipients", ArrayType(StringType(), True), True),
-        StructField("cc", ArrayType(StringType(), True), True),
-        StructField("bcc", ArrayType(StringType(), True), True),
-        StructField("subject", StringType(), True),
-        StructField("headers_json", StringType(), True),
-        StructField("preview", StringType(), True),
-        StructField("filename", StringType(), True),
-        StructField("size_bytes", LongType(), True), 
-        StructField("mime_type", StringType(), True),
-        StructField("uri", StringType(), True),
-        StructField("body", StringType(), True),
-        StructField("original_email_date", TimestampType(), True),
-        StructField("year_partition", StringType(), True),
-        StructField("year_quality", StringType(), True)
-    ])
-    empty_df = spark.createDataFrame([], schema)
+    empty_df = spark.createDataFrame([], CONSOLIDATED_SCHEMA)
     for path in [DELTA_CONSOLIDATED_PATH, DELTA_QUARANTINE_PATH]:
         if not DeltaTable.isDeltaTable(spark, path):
             empty_df.write.format("delta").mode("overwrite").partitionBy("user_name").save(path)
@@ -265,9 +262,7 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
         chunk_size = determine_chunk_size(email_count)
         logger.info(f"[START] user={user_safe} emails={email_count} chunk_size={chunk_size}")
 
-        # FIX 1: Resume Logic
         last_dt = get_last_processed_dt(spark, user_name)
-        # Use a high enough starting email_id to ensure proper ordering when dates match
         last_id = "0"
         processed = 0
         current_year = datetime.now().year
@@ -275,8 +270,6 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
         while True:
             wait_for_resources()
             
-            # Use the max date from the previously written chunk for the WHERE clause
-            # The initial last_dt is retrieved from the Delta table for resume
             q = f"""
             SELECT e.email_id, e.message_id, e.email_date,
                     m.user_name, m.folder, m.dataset,
@@ -298,20 +291,16 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
             if not chunk_rows:
                 break
 
-            # Get the max values from the chunk (safe because chunk is small)
             max_vals = df_chunk.agg({"email_date": "max", "email_id": "max"}).collect()[0]
             last_dt = max_vals["max(email_date)"]
             last_id = max_vals["max(email_id)"]
             
-            # Get the list of email IDs in the current chunk (used for filtering the body table)
-            # FIX 5: Collect the IDs safely (since chunk is small)
             email_ids_list = [row.email_id for row in df_chunk.select("email_id").collect()]
 
             if test_mode:
                 df_chunk = df_chunk.limit(20)
 
-            # --- FIX 5: Filter the entire df_bodies by the current chunk's email_ids ---
-            # This is significantly faster as it avoids shuffling the entire body dataset.
+            #  Filter the entire df_bodies by the current chunk's email_ids ---
             df_bodies_filtered = df_bodies.filter(col("email_id").isin(email_ids_list))
             
             df_chunk = df_chunk.join(df_bodies_filtered.select("email_id","body").dropDuplicates(["email_id"]), 
@@ -321,6 +310,10 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
             df_chunk = normalize_email_schema(df_chunk)
             df_chunk = cast_size_bytes(df_chunk)
             
+            # This ensures the user_name column is always present with the correct value, preventing the schema mismatch.
+            df_chunk = df_chunk.withColumn("user_name", lit(user_name).cast(StringType()))
+
+
             # Partition column creation logic
             year_col = year(col("email_date"))
             df_chunk = df_chunk.withColumn("original_email_date", col("email_date")) \
@@ -332,21 +325,19 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
                                .otherwise(lit("invalid_year")))
 
 
-            # --- FIX 2: Coalesce before write to reduce file count and transaction overhead ---
-            # Coalesce to 2 files is lightweight and drastically reduces I/O.
+            #  Coalesce before write to reduce file count and transaction overhead ---
             for target_path, filter_expr in [(DELTA_CONSOLIDATED_PATH, col("year_quality")=="valid_year"),
                                              (DELTA_QUARANTINE_PATH, col("year_quality")!="valid_year")]:
                 chunk_to_write = df_chunk.filter(filter_expr)
                 
-                # Use coalesce(2) for a safe, low-memory reduction in output files per chunk
                 try:
                     chunk_to_write.coalesce(2).write.format("delta").mode("append").partitionBy("user_name").save(target_path)
                 except Exception as write_err:
+                    # This internal try-except is crucial for transactional writes.
                     logger.warning(f"Write failed for user={user_safe}, path={target_path}: {write_err}")
 
 
-            # --- FIX 4: Update processed count using the safe, pre-calculated chunk size ---
-            # We trust the LIMIT {chunk_size} from Postgres unless the last chunk is smaller.
+            # --- Update processed count using the safe, pre-calculated chunk size ---
             processed_in_chunk = len(email_ids_list) 
             processed += processed_in_chunk
 
@@ -355,19 +346,14 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
             if test_mode or processed >= email_count:
                 break
             
-        # --- FIX 7: Optimize the partition after the user is fully processed ---
+        # --- Optimize the partition after the user is fully processed ---
         if processed > 0 and DeltaTable.isDeltaTable(spark, DELTA_CONSOLIDATED_PATH):
             logger.info(f"[OPTIMIZE] Compacting consolidated data for user={user_safe}")
-            
-            # FIX: Change the SQL syntax to use quoted path to avoid the [SCHEMA_NOT_FOUND] error
             try:
-                # OLD: sql_optimize = f"OPTIMIZE delta.`{DELTA_CONSOLIDATED_PATH}` WHERE user_name = '{user_name}'"
-                # NEW: Use the quoted path as a literal string
                 sql_optimize = f"OPTIMIZE '{DELTA_CONSOLIDATED_PATH}' WHERE user_name = '{user_name}'"
                 spark.sql(sql_optimize)
                 logger.info(f"[OPTIMIZE] Compaction complete for user={user_safe} via SQL.")
             except Exception as optimize_err:
-                # Log a dedicated warning if the OPTIMIZE fails but allow the rest of the script to finish.
                 logger.warning(f"[OPTIMIZE FAIL] user={user_safe} failed during SQL OPTIMIZE: {optimize_err}")
 
 
@@ -376,12 +362,79 @@ def process_user(user_name: str, email_count: int, spark: SparkSession, df_bodie
     except Exception as e:
         logger.exception(f"[ERROR] user={user_safe} failed: {e}")
 
+
+# ----------------------
+#QUARANTINE REMEDIATION HANDLER
+# ----------------------
+def process_quarantine_users(spark: SparkSession):
+    """
+    Scans the quarantine folder, fixes the schema issue (adds user_name),
+    merges the corrected data into the consolidated table, and cleans up the quarantine folder.
+    """
+    logger.info("--- Starting Quarantine Remediation Process ---")
+    
+    # Get all subdirectories (which are the failed user partitions)
+    quarantine_subfolders = [d.name for d in os.scandir(DELTA_QUARANTINE_PATH) if d.is_dir()]
+
+    if not quarantine_subfolders:
+        logger.info("No quarantined users found. Remediation skipped.")
+        return
+
+    for folder_name in quarantine_subfolders:
+        # Extract the user ID from the partition folder name (e.g., 'user_name=zufferli-j' -> 'zufferli-j')
+        match = re.match(r"user_name=(.+)", folder_name)
+        if not match:
+            logger.warning(f"Skipping unknown quarantine folder format: {folder_name}")
+            continue
+
+        user_name = match.group(1)
+        quarantine_path = os.path.join(DELTA_QUARANTINE_PATH, folder_name)
+
+        logger.info(f"[REMEDIATE] Attempting to fix and merge user: {user_name} from {quarantine_path}")
+
+        try:
+            # 1. Read the quarantined Parquet data (this is the key step)
+            # We explicitly use 'parquet' here because the quarantine folder contains Parquet files (not a Delta log)
+            df_quarantined = spark.read.format("parquet").load(quarantine_path)
+            
+            # 2. Apply the necessary schema 
+            # We cast to ensure consistency with the consolidated schema.
+            df_fixed = df_quarantined.withColumn("user_name", lit(user_name).cast(StringType()))
+            
+            # 3. Write the corrected data to a temporary Delta location (required for transactional merge)
+            tmp_merge_path = os.path.join(TMP_DELTA_PATH, f"remediate_{user_name}")
+            df_fixed.write.format("delta").mode("overwrite").save(tmp_merge_path)
+            
+            # 4. Perform a transactional merge into the consolidated table
+            target_delta = DeltaTable.forPath(spark, DELTA_CONSOLIDATED_PATH)
+            df_updates = spark.read.format("delta").load(tmp_merge_path)
+            
+            target_delta.alias("target") \
+                .merge(
+                    df_updates.alias("updates"),
+                    "target.email_id = updates.email_id"
+                ) \
+                .whenNotMatchedInsertAll() \
+                .execute()
+                
+            logger.info(f"[SUCCESS] User {user_name} successfully re-merged into consolidated table.")
+            
+            # 5. Clean up: Delete the source quarantine folder and the temp Delta location
+            shutil.rmtree(quarantine_path)
+            shutil.rmtree(tmp_merge_path)
+            logger.info(f"[CLEANUP] Deleted {quarantine_path} and {tmp_merge_path}")
+            
+        except Exception as e:
+            logger.exception(f"[FAILURE] Remediation failed for user {user_name}. Leaving files in quarantine. Error: {e}")
+
+    logger.info("--- Quarantine Remediation Complete ---")
+
+
 # ----------------------
 # THREAD ORCHESTRATOR & MAIN
 # ----------------------
 def run_user_tasks_in_threads(users_counts, spark, df_bodies, test_mode=False):
     """Runs processing for multiple users concurrently using Python threads."""
-    # (Remains the same)
     logger.info(f"Orchestrator scheduling {len(users_counts)} users with {DRIVER_USER_THREADS} threads")
     with ThreadPoolExecutor(max_workers=DRIVER_USER_THREADS) as executor:
         futures = {executor.submit(process_user, u, c, spark, df_bodies, test_mode): u for u, c in users_counts}
@@ -392,7 +445,6 @@ def run_user_tasks_in_threads(users_counts, spark, df_bodies, test_mode=False):
                 logger.exception(f"User task {futures[future]} failed unexpectedly in orchestrator: {e}")
 
 def main():
-    # (Main logic remains the same)
     parser = argparse.ArgumentParser(description="Fully memory-safe Stage 4 for email consolidation.")
     parser.add_argument("--test", action="store_true", help="Run in test mode (limits to 5 users and 20 rows per chunk).")
     args = parser.parse_args()
@@ -405,10 +457,8 @@ def main():
     consolidate_stage4(test=args.test)
 
 def consolidate_stage4(test=False):
-    # (Main execution logic remains the same)
     spark = create_spark_session()
     try:
-        # NOTE: df_bodies is assumed to be a large Parquet/Delta file from a previous stage
         df_bodies = spark.read.parquet(DELTA_BODIES_PATH).select("email_id","body")
         precreate_delta_tables(spark)
         users_counts = discover_users_with_counts(spark)
@@ -416,7 +466,13 @@ def consolidate_stage4(test=False):
             users_counts = users_counts[:5] 
         logger.info(f"Total users to process: {len(users_counts)}")
         start = time.time()
+        
+        # 1. Main ingestion runs first 
         run_user_tasks_in_threads(users_counts, spark, df_bodies, test_mode=test)
+        
+        # 2. Quarantine cleanup and retry runs next
+        process_quarantine_users(spark)
+        
         logger.info(f"--- Consolidation finished in {time.time() - start:.2f} seconds ---")
     except Exception as e:
         logger.exception(f"FATAL ERROR in main consolidation thread: {e}")
@@ -427,4 +483,3 @@ def consolidate_stage4(test=False):
 
 if __name__ == "__main__":
     main()
-
